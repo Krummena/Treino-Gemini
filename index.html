@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e1e1e">
+    <link rel="icon" type="image/png" href="https://img.icons8.com/ios-filled/50/ffffff/dumbbell.png">
+</head>
+<body>
+
+    <div id="user-selection" class="screen active">
+        <h1>Quem vai treinar?</h1>
+        <div class="user-cards">
+            <div class="card user-card" onclick="selectUser('vinicius')">
+                <h2>Vinícius</h2>
+                <p>Hipertrofia / ABC + FB</p>
+            </div>
+            <div class="card user-card" onclick="selectUser('barbara')">
+                <h2>Bárbara</h2>
+                <p>Full Body A / B</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="workout-list" class="screen hidden">
+        <header>
+            <button class="back-btn" onclick="goBack('user-selection')">← Voltar</button>
+            <h2 id="user-title">Treinos</h2>
+        </header>
+        <div id="workouts-container"></div>
+        <button class="history-btn" onclick="showHistory()">Ver Histórico</button>
+    </div>
+
+    <div id="exercise-view" class="screen hidden">
+        <header>
+            <button class="back-btn" onclick="goBack('workout-list')">← Voltar</button>
+            <h2 id="workout-title">Treino A</h2>
+        </header>
+        <div id="exercises-container"></div>
+    </div>
+
+    <div id="exercise-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title">Nome do Exercício</h2>
+            
+            <div class="media-container">
+                <img id="modal-gif" src="" alt="Execução" onerror="this.src='https://via.placeholder.com/300x200?text=Sem+GIF';">
+                <a id="youtube-link" href="#" target="_blank" class="yt-btn">Ver no YouTube</a>
+            </div>
+
+            <div class="info-box">
+                <p><strong>Séries:</strong> <span id="modal-sets"></span></p>
+                <p><strong>Reps:</strong> <span id="modal-reps"></span></p>
+                <p class="cues"><strong>Dicas:</strong> <span id="modal-cues"></span></p>
+            </div>
+
+            <div class="log-area">
+                <h3>Registrar Série</h3>
+                <div class="inputs">
+                    <input type="number" id="log-weight" placeholder="Carga (kg)">
+                    <input type="number" id="log-reps" placeholder="Reps feitas">
+                </div>
+                <button class="save-btn" onclick="saveLog()">Salvar Série</button>
+                <div id="last-logs">
+                    <h4>Histórico Recente:</h4>
+                    <ul id="log-list"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="history-view" class="screen hidden">
+        <header>
+            <button class="back-btn" onclick="goBack('workout-list')">← Voltar</button>
+            <h2>Histórico de Treinos</h2>
+        </header>
+        <ul id="global-history-list"></ul>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
